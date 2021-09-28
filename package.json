@@ -1,0 +1,23 @@
+{
+  "name": "helpmeexcel",
+  "version": "1.0.0",
+  "description": "This is an application that will do excel things but with out vba.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bryantkrause/helpMeExcel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bryantkrause/helpMeExcel/issues"
+  },
+  "homepage": "https://github.com/Bryantkrause/helpMeExcel#readme",
+  "dependencies": {
+    "xlsx": "^0.17.2"
+  }
+}
