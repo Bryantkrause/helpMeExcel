@@ -1,7 +1,7 @@
 var xlsx = require("xlsx");
 const path = require("path");
 
-const AtHome = true;
+const AtHome = false;
 
 if (AtHome) {
 	CoolFile = "C:/Users/bryan/Documents/Workdoc.xlsx";
