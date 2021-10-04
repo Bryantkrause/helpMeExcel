@@ -1,18 +1,19 @@
 const xlsx = require("xlsx");
 const path = require("path");
 
-const AtHome = true;
-const filePath = "C:/Users/bryan/Documents/testydoc.xlsx";
+const AtHome = false;
+// const filePath = "C:/Users/bryan/Documents/testydoc.xlsx";
 data = [];
 
 if (AtHome) {
 	CoolFile = "C:/Users/bryan/Documents/Workdoc4.xlsx";
+	filePath = "C:/Users/bryan/Documents/testydoc.xlsx";
 } else {
-	CoolFile =
-		"J:/2021 Finance/OT/Temp Analysis/2021 Temp Working hours for Budget - Fullerton.xlsx";
+	CoolFile = "J:/2021 Finance/OT/Temp Analysis/2021 Temp Working hours for Budget - Fullerton.xlsx";
+	filePath = "C:/Users/bkrause/Documents/testydoc.xlsx";
 }
 
-let wb = xlsx.readFile(CoolFile, { cellDates: true });
+let wb = xlsx.readFile(CoolFile, { cellDates: true , raw: true}, );
 
 let firstSheet = wb.SheetNames[0];
 
@@ -44,6 +45,8 @@ let fullerton105 = excelRows
 	.map((report) => {
 		if (report.Location === "Fullerton" && report.Department === 105) {
 			return {
+				OT_percentage: report.OT_percentage.z = "0.00",
+				// TotalAmt: report.Regular_hrs + report.OT_hrs,
 				...report,
 			};
 		}
@@ -54,6 +57,7 @@ let fullerton111 = excelRows
 	.map((report) => {
 		if (report.Location === "Fullerton" && report.Department === 111) {
 			return {
+				// TotalAmt: report.Regular_hrs + report.OT_hrs,
 				...report,
 			};
 		}
@@ -108,9 +112,10 @@ const exportDataToExcel = (
 			report.Regular_pay,
 			report.OT_pay,
 			report.Holiday_pay,
+			report.Sick_Payment,
 			report.ACA_Charge,
 			report.TotalAmt,
-			report.OT_percentage,
+			report.OT_percentage.z ,
 			report.Location,
 			report.Department,
 			report.Temp_Agency,
