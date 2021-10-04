@@ -125,3 +125,7 @@ const exportDataToExcel = (
 };
 
 exportDataToExcel(fullerton105, columnNames, filePath, worksheetName1);
+
+// use this example to update formatting
+// https://github.com/SheetJS/sheetjs/issues/966
+// https://jsfiddle.net/1ny97xrb/1/
