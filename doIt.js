@@ -93,6 +93,29 @@ const exportExcel = (data, columnNames, filePath, worksheetName1) => {
 	const workBook = xlsx.utils.book_new();
 	const workSheetData = [columnNames, ...data];
 	const worksheet = xlsx.utils.aoa_to_sheet(workSheetData);
+	let rowEnd = fullerton105.length+1
+
+var dollar = "$0.00";
+/* change cell format of number colum e - J */
+var range = { s: {r:1, c:4}, e: {r:rowEnd, c:9} };
+for(var R = range.s.r; R <= range.e.r; ++R) {
+	for(var C = range.s.c; C <= range.e.c; ++C) {
+		 var cell = worksheet[xlsx.utils.encode_cell({r:R,c:C})];
+	if(!cell || cell.t != 'n') continue; // only format numeric cells
+	cell.z = dollar;
+	  }
+	}
+
+var percent = "0.00%";
+/* change cell format of percent column */
+var range = { s: {r:1, c:10}, e: {r:rowEnd, c:10} };
+for(var R = range.s.r; R <= range.e.r; ++R) {
+	for(var C = range.s.c; C <= range.e.c; ++C) {
+  	var cell = worksheet[xlsx.utils.encode_cell({r:R,c:C})];
+    if(!cell || cell.t != 'n') continue; // only format numeric cells
+    cell.z = percent;
+  }
+}
 	xlsx.utils.book_append_sheet(workBook, worksheet, worksheetName1);
 	xlsx.writeFile(workBook, path.resolve(filePath));
 };
@@ -115,7 +138,7 @@ const exportDataToExcel = (
 			report.Sick_Payment,
 			report.ACA_Charge,
 			report.TotalAmt,
-			report.OT_percentage.z ,
+			report.OT_percentage,
 			report.Location,
 			report.Department,
 			report.Temp_Agency,
@@ -125,6 +148,9 @@ const exportDataToExcel = (
 };
 
 exportDataToExcel(fullerton105, columnNames, filePath, worksheetName1);
+
+
+
 
 // use this example to update formatting
 // https://github.com/SheetJS/sheetjs/issues/966
